@@ -4,20 +4,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:background="#FFFFFF"
     android:padding="24dp">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="DormLog"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="8dp"/>
+        android:src="@drawable/dormlog_logo"
+        android:adjustViewBounds="true"
+        android:layout_marginBottom="24dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dormitory Visitor Management"
+        android:textStyle="bold"
         android:layout_marginBottom="32dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -48,5 +50,6 @@
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#0B1D40"
         android:text="LOGIN"/>
 </LinearLayout>

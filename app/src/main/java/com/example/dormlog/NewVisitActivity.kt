@@ -19,7 +19,6 @@ class NewVisitActivity : AppCompatActivity() {
     }
 
     private fun save() {
-        // ---- clear old errors
         listOf(b.tilVisitor, b.tilId, b.tilResident, b.tilPurpose).forEach {
             it.error = null
         }
