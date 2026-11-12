@@ -1,70 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:text="Visit Details"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:padding="16dp"
+        android:background="#0B1D40"
+        android:textColor="#FFFFFF"/>
 
-        <TextView
-            android:id="@+id/tvStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="● ACTIVE"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="VISITOR" android:textSize="11sp" android:textColor="#777"/>
-        <TextView android:id="@+id/tvVisitor" android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:textSize="18sp"
-            android:textStyle="bold" android:layout_marginBottom="12dp"/>
-
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="RESIDENT" android:textSize="11sp" android:textColor="#777"/>
-        <TextView android:id="@+id/tvResident" android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:layout_marginBottom="12dp"/>
-
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="PURPOSE" android:textSize="11sp" android:textColor="#777"/>
-        <TextView android:id="@+id/tvPurpose" android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:layout_marginBottom="12dp"/>
-
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="CONTACT / ID" android:textSize="11sp" android:textColor="#777"/>
-        <TextView android:id="@+id/tvContact" android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:layout_marginBottom="12dp"/>
-
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="CHECK-IN TIME" android:textSize="11sp" android:textColor="#777"/>
-        <TextView android:id="@+id/tvCheckIn" android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:textStyle="bold"
-            android:layout_marginBottom="12dp"/>
-
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="CHECK-OUT TIME" android:textSize="11sp" android:textColor="#777"/>
-        <TextView android:id="@+id/tvCheckOut" android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:layout_marginBottom="24dp"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnCheckOut"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CONFIRM CHECK-OUT"
-            android:backgroundTint="#0B1D40"
-            android:layout_marginBottom="10dp"/>
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnDelete"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="DELETE"
-            android:backgroundTint="#0B1D40"
-            android:textColor="#D32F2F"/>
-    </LinearLayout>
-</ScrollView>
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="● ACTIVE"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="VISITOR" android:textSize="11sp" android:textColor="#777"/>
+            <TextView android:id="@+id/tvVisitor" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:textSize="18sp"
+                android:textStyle="bold" android:layout_marginBottom="12dp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="RESIDENT" android:textSize="11sp" android:textColor="#777"/>
+            <TextView android:id="@+id/tvResident" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_marginBottom="12dp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="PURPOSE" android:textSize="11sp" android:textColor="#777"/>
+            <TextView android:id="@+id/tvPurpose" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_marginBottom="12dp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="CONTACT / ID" android:textSize="11sp" android:textColor="#777"/>
+            <TextView android:id="@+id/tvContact" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_marginBottom="12dp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="CHECK-IN TIME" android:textSize="11sp" android:textColor="#777"/>
+            <TextView android:id="@+id/tvCheckIn" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:textStyle="bold"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="CHECK-OUT TIME" android:textSize="11sp" android:textColor="#777"/>
+            <TextView android:id="@+id/tvCheckOut" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_marginBottom="24dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCheckOut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CONFIRM CHECK-OUT"
+                android:backgroundTint="#0B1D40"
+                android:layout_marginBottom="10dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDelete"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DELETE"
+                android:backgroundTint="#0B1D40"
+                android:textColor="#D32F2F"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
