@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.dormlog.data.AuthRepository
 import com.example.dormlog.databinding.ActivityLoginBinding
+import com.example.dormlog.model.UserRole
 
 class LoginActivity : AppCompatActivity() {
 
@@ -19,16 +21,24 @@ class LoginActivity : AppCompatActivity() {
             val email = b.etEmail.text.toString().trim()
             val pass = b.etPassword.text.toString()
 
-            when {
-                email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() ->
-                    b.etEmail.error = "Enter a valid email"
-                pass.length < 6 ->
-                    b.etPassword.error = "Password must be at least 6 characters"
-                else -> {
-                    Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, DashboardActivity::class.java))
-                    finish()
+            if (email.isEmpty() || pass.isEmpty()) {
+                Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val user = AuthRepository.login(email, pass)
+
+            if (user != null) {
+                Toast.makeText(this, "Welcome ${user.role.name}", Toast.LENGTH_SHORT).show()
+
+                when (user.role) {
+                    UserRole.RESIDENT -> startActivity(Intent(this, ResidentDashboardActivity::class.java))
+                    UserRole.STAFF -> startActivity(Intent(this, StaffDashboardActivity::class.java))
+                    UserRole.ADMIN -> startActivity(Intent(this, AdminDashboardActivity::class.java))
                 }
+                finish()
+            } else {
+                Toast.makeText(this, "Invalid email or password (use 123456)", Toast.LENGTH_LONG).show()
             }
         }
     }

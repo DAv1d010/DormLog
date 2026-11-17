@@ -21,11 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DashboardActivity" />
-        <activity android:name=".ActiveVisitsActivity" />
-        <activity android:name=".NewVisitActivity" />
-        <activity android:name=".VisitDetailsActivity" />
-        <activity android:name=".HistoryActivity" />
+        <activity android:name=".ResidentDashboardActivity" android:exported="false" />
+        <activity android:name=".StaffDashboardActivity" android:exported="false" />
+        <activity android:name=".AdminDashboardActivity" android:exported="false" />
+        <activity android:name=".ActiveVisitsActivity" android:exported="false" />
+        <activity android:name=".NewVisitActivity" android:exported="false" />
+        <activity android:name=".VisitDetailsActivity" android:exported="false" />
+        <activity android:name=".HistoryActivity" android:exported="false" />
     </application>
 
 </manifest>

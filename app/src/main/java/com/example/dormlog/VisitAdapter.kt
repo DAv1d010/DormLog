@@ -3,7 +3,9 @@ package com.example.dormlog
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.dormlog.data.AuthRepository
 import com.example.dormlog.databinding.ItemVisitBinding
+import com.example.dormlog.model.UserRole
 import com.example.dormlog.model.Visit
 import com.example.dormlog.model.VisitStatus
 import java.text.SimpleDateFormat
@@ -38,7 +40,7 @@ class VisitAdapter(
         h.b.tvResident.text = "Visiting: ${v.residentName} · ${v.roomNumber}"
         h.b.tvStatus.text = "IN: ${fmt.format(Date(v.checkInTime))} · ${v.status.name}"
 
-        val active = v.status == VisitStatus.ACTIVE
+        val active = v.status == VisitStatus.ACTIVE && AuthRepository.currentUser?.role != UserRole.RESIDENT
         h.b.btnCheckOut.visibility = if (active) android.view.View.VISIBLE
         else android.view.View.GONE
 
