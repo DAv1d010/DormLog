@@ -1,6 +1,8 @@
 package com.example.dormlog
 
+import android.R
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dormlog.data.AuthRepository
@@ -18,16 +20,30 @@ class NewVisitActivity : AppCompatActivity() {
         setContentView(b.root)
 
         val currentUser = AuthRepository.currentUser
+        val residents = AuthRepository.getRegisteredResidents(this)
+        val residentNames = residents.map { t -> t.first }
+
+        val adapter = ArrayAdapter(this, R.layout.simple_dropdown_item_1line, residentNames)
+        b.etResident.setAdapter(adapter)
+
+        b.etResident.setOnItemClickListener { _, _, position, _ ->
+            val selectedName = residentNames[position]
+            val matchedRoom = residents.find { it.first.equals(selectedName, true) }?.second ?: ""
+            b.etRoom.setText(matchedRoom)
+        }
+
         if (currentUser?.role == UserRole.RESIDENT) {
             b.etResident.setText(currentUser.residentName)
             b.etResident.isEnabled = false
+            b.etRoom.setText(currentUser.roomNumber)
+            b.etRoom.isEnabled = false
         }
 
         b.btnSave.setOnClickListener { save() }
     }
 
     private fun save() {
-        listOf(b.tilVisitor, b.tilId, b.tilResident, b.tilPurpose).forEach {
+        listOf(b.tilVisitor, b.tilId, b.tilResident, b.tilRoom, b.tilPurpose).forEach {
             it.error = null
         }
 
@@ -49,6 +65,7 @@ class NewVisitActivity : AppCompatActivity() {
         if (visitor.isEmpty()) { b.tilVisitor.error = "Required"; valid = false }
         if (id.isEmpty()) { b.tilId.error = "Required"; valid = false }
         if (resident.isEmpty()) { b.tilResident.error = "Required"; valid = false }
+        if (room.isEmpty()) { b.tilRoom.error = "Required"; valid = false }
         if (purpose.isEmpty()) { b.tilPurpose.error = "Required"; valid = false }
 
         if (contact.isNotEmpty() &&
@@ -64,7 +81,7 @@ class NewVisitActivity : AppCompatActivity() {
         if (!valid) return
 
         val newId = VisitRepository.createVisit(
-            visitor, contact, id, resident, room, purpose, duration
+            visitor, contact, id, resident, room, purpose, duration,
         )
 
         if (newId == null) {

@@ -37,10 +37,27 @@ object AuthRepository {
         return true
     }
 
+    fun getRegisteredResidents(context: Context): List<Pair<String, String>> {
+        val list = mutableListOf<Pair<String, String>>()
+        list.add(Pair("Maria Santos", "302"))
+
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val usersJsonStr = prefs.getString(KEY_USERS, "[]") ?: "[]"
+        val jsonArray = JSONArray(usersJsonStr)
+        for (i in 0 until jsonArray.length()) {
+            val obj = jsonArray.getJSONObject(i)
+            val name = obj.getString("name")
+            val room = obj.getString("room")
+            if (!list.any { it.first.equals(name, true) }) {
+                list.add(Pair(name, room))
+            }
+        }
+        return list
+    }
+
     fun login(context: Context, email: String, password: String): User? {
         val cleanEmail = email.trim().lowercase()
 
-        // Check registered residents from SharedPreferences first
         val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         val usersJsonStr = prefs.getString(KEY_USERS, "[]") ?: "[]"
         val jsonArray = JSONArray(usersJsonStr)
