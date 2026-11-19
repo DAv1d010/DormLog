@@ -10,22 +10,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Resident Dashboard"
-        android:textSize="26sp"
+        android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginBottom="16dp"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="You have visitors waiting:"
         android:textSize="16sp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="12dp"/>
 
+    <!-- Reusing RecyclerView for resident's active visitors -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvVisits"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:layout_marginBottom="12dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnHistory"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MY HISTORY"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLogout"
@@ -33,5 +42,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="LOG OUT"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="8dp"/>
 </LinearLayout>

@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.dormlog.data.AuthRepository
 import com.example.dormlog.data.VisitRepository
 import com.example.dormlog.databinding.ActivityHistoryBinding
+import com.example.dormlog.model.UserRole
 
 class HistoryActivity : AppCompatActivity() {
 
@@ -34,7 +36,11 @@ class HistoryActivity : AppCompatActivity() {
     }
 
     private fun refresh() {
-        val list = VisitRepository.getHistory()
+        val user = AuthRepository.currentUser
+        var list = VisitRepository.getHistory()
+        if (user?.role == UserRole.RESIDENT) {
+            list = list.filter { it.residentName.equals(user.residentName, true) }
+        }
         adapter.submit(list)
         b.tvEmpty.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
     }

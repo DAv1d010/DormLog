@@ -26,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val user = AuthRepository.login(email, pass)
+            val user = AuthRepository.login(this, email, pass)
 
             if (user != null) {
                 Toast.makeText(this, "Welcome ${user.role.name}", Toast.LENGTH_SHORT).show()
@@ -40,6 +40,10 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Invalid email or password (use 123456)", Toast.LENGTH_LONG).show()
             }
+        }
+
+        b.btnRegister.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
 }

@@ -21,6 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".RegisterActivity" android:exported="false" />
         <activity android:name=".ResidentDashboardActivity" android:exported="false" />
         <activity android:name=".StaffDashboardActivity" android:exported="false" />
         <activity android:name=".AdminDashboardActivity" android:exported="false" />

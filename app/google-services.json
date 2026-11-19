@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "172331481652",
+    "firebase_url": "https://dormlog-default-rtdb.firebaseio.com",
+    "project_id": "dormlog",
+    "storage_bucket": "dormlog.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172331481652:android:ae230f009ccd8d87b9e861",
+        "android_client_info": {
+          "package_name": "com.example.dormlog"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2TZiTEJ2uuWBjLJDHReU7jIgsKCYngZ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

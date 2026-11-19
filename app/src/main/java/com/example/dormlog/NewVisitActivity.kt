@@ -3,8 +3,10 @@ package com.example.dormlog
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.dormlog.data.AuthRepository
 import com.example.dormlog.data.VisitRepository
 import com.example.dormlog.databinding.ActivityNewVisitBinding
+import com.example.dormlog.model.UserRole
 
 class NewVisitActivity : AppCompatActivity() {
 
@@ -14,6 +16,12 @@ class NewVisitActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         b = ActivityNewVisitBinding.inflate(layoutInflater)
         setContentView(b.root)
+
+        val currentUser = AuthRepository.currentUser
+        if (currentUser?.role == UserRole.RESIDENT) {
+            b.etResident.setText(currentUser.residentName)
+            b.etResident.isEnabled = false
+        }
 
         b.btnSave.setOnClickListener { save() }
     }
@@ -26,7 +34,12 @@ class NewVisitActivity : AppCompatActivity() {
         val visitor = b.etVisitor.text.toString().trim()
         val contact = b.etContact.text.toString().trim()
         val id = b.etId.text.toString().trim()
-        val resident = b.etResident.text.toString().trim()
+        val currentUser = AuthRepository.currentUser
+        val resident = if (currentUser?.role == UserRole.RESIDENT) {
+            currentUser.residentName
+        } else {
+            b.etResident.text.toString().trim()
+        }
         val room = b.etRoom.text.toString().trim()
         val purpose = b.etPurpose.text.toString().trim()
         val durStr = b.etDuration.text.toString().trim()
@@ -61,7 +74,7 @@ class NewVisitActivity : AppCompatActivity() {
             return
         }
 
-        Toast.makeText(this, "Checked in successfully", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Visit created successfully", Toast.LENGTH_SHORT).show()
         finish()
     }
 }

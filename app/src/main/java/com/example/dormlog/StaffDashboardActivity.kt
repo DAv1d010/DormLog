@@ -14,6 +14,9 @@ class StaffDashboardActivity : AppCompatActivity() {
         b = ActivityStaffDashboardBinding.inflate(layoutInflater)
         setContentView(b.root)
 
+        val user = AuthRepository.currentUser
+        b.tvHeader.text = "Staff Dashboard - ${user?.email ?: ""}"
+
         b.btnNew.setOnClickListener { startActivity(Intent(this, NewVisitActivity::class.java)) }
         b.btnActive.setOnClickListener { startActivity(Intent(this, ActiveVisitsActivity::class.java)) }
         b.btnHistory.setOnClickListener { startActivity(Intent(this, HistoryActivity::class.java)) }
