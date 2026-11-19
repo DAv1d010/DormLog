@@ -21,15 +21,15 @@ class NewVisitActivity : AppCompatActivity() {
 
         val currentUser = AuthRepository.currentUser
         val residents = AuthRepository.getRegisteredResidents(this)
-        val residentNames = residents.map { t -> t.first }
+        val residentDisplayList = residents.map { "${it.first} (Room ${it.second})" }
 
-        val adapter = ArrayAdapter(this, R.layout.simple_dropdown_item_1line, residentNames)
+        val adapter = ArrayAdapter(this, R.layout.simple_dropdown_item_1line, residentDisplayList)
         b.etResident.setAdapter(adapter)
 
         b.etResident.setOnItemClickListener { _, _, position, _ ->
-            val selectedName = residentNames[position]
-            val matchedRoom = residents.find { it.first.equals(selectedName, true) }?.second ?: ""
-            b.etRoom.setText(matchedRoom)
+            val selected = residents[position]
+            b.etResident.setText(selected.first, false)
+            b.etRoom.setText(selected.second)
         }
 
         if (currentUser?.role == UserRole.RESIDENT) {
@@ -37,6 +37,7 @@ class NewVisitActivity : AppCompatActivity() {
             b.etResident.isEnabled = false
             b.etRoom.setText(currentUser.roomNumber)
             b.etRoom.isEnabled = false
+            b.tilResident.isEnabled = false
         }
 
         b.btnSave.setOnClickListener { save() }
@@ -81,7 +82,7 @@ class NewVisitActivity : AppCompatActivity() {
         if (!valid) return
 
         val newId = VisitRepository.createVisit(
-            visitor, contact, id, resident, room, purpose, duration,
+            visitor, contact, id, resident, room, purpose, duration
         )
 
         if (newId == null) {
