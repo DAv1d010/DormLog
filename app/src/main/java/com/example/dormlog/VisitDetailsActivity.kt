@@ -1,10 +1,13 @@
 package com.example.dormlog
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.dormlog.data.AuthRepository
 import com.example.dormlog.data.VisitRepository
 import com.example.dormlog.databinding.ActivityVisitDetailsBinding
+import com.example.dormlog.model.UserRole
 import com.example.dormlog.model.VisitStatus
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -22,6 +25,12 @@ class VisitDetailsActivity : AppCompatActivity() {
 
         val id = intent.getStringExtra("visitId")
         if (id == null) { finish(); return }
+
+        val currentUser = AuthRepository.currentUser
+        if (currentUser?.role == UserRole.RESIDENT) {
+            b.btnCheckOut.visibility = View.GONE
+            b.btnDelete.visibility = View.GONE
+        }
 
         render(id)
 
